@@ -26,17 +26,50 @@ public class StringOps {
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+        String input = "Hello World";
+        String newInput = "";
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            // Check if the character is a lowercase vowel
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                c = (char) (c - 32); // Convert to uppercase using ASCII
+            } 
+            // Check if the character is an uppercase vowel
+            else if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+                c = (char) (c + 32); // Convert to lowercase using ASCII
+            }
+            newInput += c;
+        }
+        return newInput;
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
+        String word1 = "Hello";
+        char a = word1.charAt(0);
+        if (a >= 'A' && a <= 'Z') {
+            a = (char) (a + 32);
+        }
+        word1 = a + word1.substring(1);
+        System.out.println(word1);
+
+        String word2 = "world";
+        char b = word2.charAt(0);
+        if (b >= 'a' && b <= 'z') {
+            b = (char) (b - 32);
+        }
+        word2 = b + word2.substring(1);
+        System.out.println(word2);
         return "";
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
+        String input = "Hello World";
+        char letter = 'o';
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == letter) {
+                System.out.println(i);
+            }
+        }
         return new int[1];
     }
 }
