@@ -27,19 +27,22 @@ public class StringOps {
 
     public static String capVowelsLowRest(String string) {
         String newString = "";
-        for (int i = 0; i < string.length(); i++) {
-            char c = string.charAt(i);
-            // Check if the character is a lowercase vowel
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-                c = (char) (c - 32); // Convert to uppercase using ASCII
-            }
-            // Check if the character is an uppercase vowel
-            else if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
-                c = (char) (c + 32); // Convert to lowercase using ASCII
-            }
-            newString += c;
+    for (int i = 0; i < string.length(); i++) {
+        char c = string.charAt(i);
+        // Check if the character is a lowercase vowel
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            c = (char) (c - 32); // Convert to uppercase using ASCII
         }
-        return newString;
+        // Check if the character is an uppercase vowel
+        else if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+            // Do nothing, keep it as an uppercase vowel
+        }
+        else if (Character.isUpperCase(c)) {
+            c = (char) (c + 32); // Convert to lowercase using ASCII
+        }
+        newString += c;
+    }
+    return newString;
     }
 
     public static String camelCase(String string) {

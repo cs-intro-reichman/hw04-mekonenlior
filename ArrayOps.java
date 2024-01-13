@@ -5,31 +5,34 @@ public class ArrayOps {
 
     public static int findMissingInt(int[] array) {
         int arrayLength = array.length;
-        int missingNumber = 0;
 
-        for (int i = 0; i < arrayLength; i++) {
-            if (array[i] != i + 1) {
-                missingNumber = i + 1;
-                break; // Break out of the loop once the missing number is found
-            }
+        // Check if 0 is missing
+        if (array[0] != 0) {
+            return 0;
         }
 
-        return missingNumber;
+        // Check for missing integers in the middle
+        for (int i = 1; i < arrayLength; i++) {
+            if (array[i] != array[i - 1] + 1) {
+                return array[i - 1] + 1;
+            }
+        }
+        return array[arrayLength - 1] + 1;
     }
 
     public static int secondMaxValue(int[] array) {
         int max = array[0];
-        int secondMax = array[0];
+        int secondMax = 0;
+
         for (int i = 1; i < array.length; i++) {
             if (array[i] > max) {
+                secondMax = max;
                 max = array[i];
-            }
-        }
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] > secondMax && array[i] < max) {
+            } else if (array[i] > secondMax && array[i] < max) {
                 secondMax = array[i];
             }
         }
+
         return secondMax;
     }
 
