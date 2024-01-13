@@ -1,75 +1,93 @@
 public class StringOps {
     ////////////////////////////////////////////////////////////
-    //////                                               ///////
-    //////              Reminder:                        ///////
-    //////        allowed methods                        ///////
-    //////                                               ///////
-    //////        1.charAt(int index)                    ///////
-    //////        2.length()                             ///////
-    //////        3.substring(int start)                 ///////
-    //////        4.substring(int start,int ends)        ///////
-    //////        5.indexOf(String str)                  ///////
-    //////                                               ///////
-    //////        The rest are not allowed !             ///////
-    //////        if you want to use a different         ///////
-    //////        method, and you can implement          ///////
-    //////        it using material from the course      ///////
-    //////        you need to implement a version of     ///////
-    //////        the function by yourself.              ///////
-    //////                                               ///////
-    //////        see example for substring              ///////
-    //////        in Recitation 3 question 5             ///////
-    //////                                               ///////
+    ////// ///////
+    ////// Reminder: ///////
+    ////// allowed methods ///////
+    ////// ///////
+    ////// 1.charAt(int index) ///////
+    ////// 2.length() ///////
+    ////// 3.substring(int start) ///////
+    ////// 4.substring(int start,int ends) ///////
+    ////// 5.indexOf(String str) ///////
+    ////// ///////
+    ////// The rest are not allowed ! ///////
+    ////// if you want to use a different ///////
+    ////// method, and you can implement ///////
+    ////// it using material from the course ///////
+    ////// you need to implement a version of ///////
+    ////// the function by yourself. ///////
+    ////// ///////
+    ////// see example for substring ///////
+    ////// in Recitation 3 question 5 ///////
+    ////// ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+
     }
 
-    public static String capVowelsLowRest (String string) {
-        String input = "Hello World";
-        String newInput = "";
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
+    public static String capVowelsLowRest(String string) {
+        String newString = "";
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
             // Check if the character is a lowercase vowel
             if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
                 c = (char) (c - 32); // Convert to uppercase using ASCII
-            } 
+            }
             // Check if the character is an uppercase vowel
             else if (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
                 c = (char) (c + 32); // Convert to lowercase using ASCII
             }
-            newInput += c;
+            newString += c;
         }
-        return newInput;
+        return newString;
     }
 
-    public static String camelCase (String string) {
-        String word1 = "Hello";
-        char a = word1.charAt(0);
-        if (a >= 'A' && a <= 'Z') {
-            a = (char) (a + 32);
-        }
-        word1 = a + word1.substring(1);
-        System.out.println(word1);
+    public static String camelCase(String string) {
+        int length = string.length();
+        boolean capitalizeNext = false;
+        String result = "";
 
-        String word2 = "world";
-        char b = word2.charAt(0);
-        if (b >= 'a' && b <= 'z') {
-            b = (char) (b - 32);
-        }
-        word2 = b + word2.substring(1);
-        System.out.println(word2);
-        return "";
-    }
+        for (int i = 0; i < length; i++) {
+            char currentChar = string.charAt(i);
 
-    public static int[] allIndexOf (String string, char chr) {
-        String input = "Hello World";
-        char letter = 'o';
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == letter) {
-                System.out.println(i);
+            // Check if the character is a whitespace using ASCII
+            if (currentChar == ' ' || currentChar == '\t' || currentChar == '\n' || currentChar == '\r'
+                    || currentChar == '\f') {
+                capitalizeNext = true;
+            } else if (capitalizeNext) {
+                // Convert to uppercase using ASCII
+                result += (char) (currentChar - ('a' - 'A'));
+                capitalizeNext = false;
+            } else {
+                // Convert to lowercase using ASCII
+                result += (char) (currentChar + ('a' - 'A'));
             }
         }
-        return new int[1];
+
+        return result;
+    }
+
+    public static int[] allIndexOf(String string, char chr) {
+        int count = 0;
+
+    // First pass to determine the size of the array
+    for (int i = 0; i < string.length(); i++) {
+        if (string.charAt(i) == chr) {
+            count++;
+        }
+    }
+
+    // Declare the array based on the count
+    int[] indices = new int[count];
+
+    // Second pass to populate the array with indexes
+    int index = 0;
+    for (int i = 0; i < string.length(); i++) {
+        if (string.charAt(i) == chr) {
+            indices[index++] = i;
+        }
+    }
+
+    return indices;
     }
 }
