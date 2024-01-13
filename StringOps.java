@@ -54,16 +54,23 @@ public class StringOps {
             char currentChar = string.charAt(i);
 
             // Check if the character is a whitespace using ASCII
-            if (currentChar == ' ' || currentChar == '\t' || currentChar == '\n' || currentChar == '\r'
-                    || currentChar == '\f') {
+            if (currentChar >= 32 && currentChar <= 47 || currentChar == 59 || currentChar == 60) {
                 capitalizeNext = true;
             } else if (capitalizeNext) {
                 // Convert to uppercase using ASCII
-                result += (char) (currentChar - ('a' - 'A'));
+                if (currentChar >= 'a' && currentChar <= 'z') {
+                    result += (char) (currentChar - 32);  // ASCII difference for uppercase
+                } else {
+                    result += currentChar;
+                }
                 capitalizeNext = false;
             } else {
                 // Convert to lowercase using ASCII
-                result += (char) (currentChar + ('a' - 'A'));
+                if (currentChar >= 'A' && currentChar <= 'Z') {
+                    result += (char) (currentChar + 32);  // ASCII difference for lowercase
+                } else {
+                    result += currentChar;
+                }
             }
         }
 
