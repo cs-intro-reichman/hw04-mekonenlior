@@ -49,6 +49,13 @@ public class StringOps {
         int length = string.length();
         boolean capitalizeNext = false;
         String result = "";
+        int white = string.charAt(0);
+
+        // Check if the first character is whitespace and remove it
+        if (white >= 32 && white <= 47 || white == 59 || white == 60) {
+            string = string.substring(1); // Start from the second character
+            length--;
+        }
 
         for (int i = 0; i < length; i++) {
             char currentChar = string.charAt(i);
