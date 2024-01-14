@@ -22,18 +22,22 @@ public class ArrayOps {
 
     public static int secondMaxValue(int[] array) {
         int max = array[0];
+        int countMax = 0; // Counter to track occurrences of max
         int secondMax = 0;
 
         for (int i = 1; i < array.length; i++) {
             if (array[i] > max) {
                 secondMax = max;
                 max = array[i];
+                countMax = 1; // Reset count when a new max is found
+            } else if (array[i] == max) {
+                countMax++; // Increment count if max is found again
             } else if (array[i] > secondMax && array[i] < max) {
                 secondMax = array[i];
             }
         }
 
-        return secondMax;
+        return countMax >= 2 ? max : secondMax; // Return max if it appears twice, otherwise secondMax
     }
 
     public static boolean containsTheSameElements(int[] array1, int[] array2) {
